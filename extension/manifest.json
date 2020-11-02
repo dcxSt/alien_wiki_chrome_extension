@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+    "name": "Alien Wikipedia",
+    "version": "0.0.1",
+    "description": "Turns Wikipedia into Alien-Wikipedia, the free encyclopedia about Aliens!",
+    "permissions": ["tabs"],
+    "content_scripts": [
+        {
+            "matches": ["http://*.wikipedia.org/*","https://*.wikipedia.org/*"],
+            "js": ["content.js"]
+        }
+    ]
+  }
