@@ -16,59 +16,8 @@ var nm14 = ["c","d","g","h","k","l","m","n","q","r","s","t","v","z","c","d","g",
 var nm15 = ["","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","oi","ie","ai","ea","ae"];
 var nm16 = ["d","ds","k","ks","l","ll","ls","n","ns","r","rs","s","t","ts","th","x","","","",""];
 
-console.log("I AM running!!!!")
-// make a dictionary that converts the matches into alien words
-// eventually we want to do it deterministically, but for now it'll be random
-function randomName(){
-    // returns random name
-    var n = Math.random() * 3 | 0;
-    if (n === 0){
-        rnd = Math.random() * nm1.length | 0;
-		rnd2 = Math.random() * nm2.length | 0;
-		rnd3 = Math.random() * nm3.length | 0;
-		rnd4 = Math.random() * nm4.length | 0;
-		rnd5 = Math.random() * nm5.length | 0;
-		while(nm1[rnd] === nm3[rnd3] || nm3[rnd3] === nm5[rnd5]){
-			rnd3 = Math.random() * nm3.length | 0;
-		}
-		if(nm3[rnd3] === ""){
-            rnd4 = 0;
-        }
-        name = nm1[rnd] + nm2[rnd2]+ nm3[rnd3] + nm4[rnd4] + nm5[rnd5];
-    }
-    else if (n === 1){
-        rnd = Math.random() * nm6.length | 0;
-        rnd2 = Math.random() * nm7.length | 0;
-        rnd3 = Math.random() * nm8.length | 0;
-        rnd4 = Math.random() * nm10.length | 0;
-        rnd5 = Math.random() * nm11.length | 0;
-        while(nm6[rnd] === nm8[rnd3] || nm8[rnd3] === nm11[rnd5]){
-            rnd3 = Math.random() * nm8.length | 0;
-        }
-        name = nm6[rnd] + nm7[rnd2] + nm8[rnd3] + nm10[rnd4] + nm11[rnd5];
-    }
-    else if (n==2){
-        rnd = Math.random() * nm12.length | 0;
-        rnd2 = Math.random() * nm13.length | 0;
-        rnd3 = Math.random() * nm14.length | 0;
-        rnd4 = Math.random() * nm15.length | 0;
-        rnd5 = Math.random() * nm16.length | 0;
-        while(nm12[rnd] === nm14[rnd3] || nm14[rnd3] === nm16[rnd5]){
-			rnd3 = Math.random() * nm14.length | 0;
-		}
-		if(nm14[rnd3] === ""){
-			rnd4 = 0;
-        }
-        name = nm12[rnd] + nm13[rnd2]+ nm14[rnd3] + nm15[rnd4] + nm16[rnd5];
-    }
-    else{
-        console.log("aaaaaahhhhh something went wrong!")
-    }
-    const capitalName = name.replace(/^\w/,function(c){
-        return c.toUpperCase();
-    });
-    return capitalName;
-}
+console.log("Alien wikipedia is running!!!!")
+
 
 var charToNum = {'a':23,'b':5,'c':8,'d':11,'e':13,'f':7,'g':10,'h':12,
 'i':14,'j':15,'k':17,'l':22,'m':76,'n':9,
@@ -200,38 +149,13 @@ function replaceWords(){
     titleInner = title.innerHTML;
     title.innerHTML = alienify(toReplace,titleInner);
 
-    // replace subtitles
-    var subtitles = document.getElementsByClassName("mw-headline");
-    for (var subtitle of subtitles){
-        subtitleInner = subtitle.innerHTML;
-        subtitle.innerHTML = alienify(toReplace,subtitleInner);
-    }
-
-    // replace summary
-    var summary = document.getElementsByClassName("summary");
-    for (var s of summary){
-        sCont = s.textContent;
-        s.textContent = alienify(toReplace,sCont);
-    }
-
-    // replace table of contents
-    toctext = document.getElementsByClassName("toctext");
-    for (var item of toctext){
-        itemInner = item.innerHTML;
-        item.innerHTML = alienify(toReplace,itemInner);
-    }
-
-    // replace fn
-    var fn = document.getElementsByClassName("fn");
+    // replace fn, table of contents, subtitles, summary(right sidebar)
+    var fn = document.querySelectorAll(".fn,.toctext,.summary,.mw-headline");
     for (var i of fn){
         iInner = i.innerHTML;
         i.innerHTML = alienify(toReplace,iInner);
-    }
+    };
 
-    // // replace welcome!
-    // var welcome = document.getElementById("mp-welcome");
-    // welcome.innerHTML = welcome.replace("title=\"Wikipedia\"","title=\"Alien Wikipedia\"");
-}
 
 replaceWords();
 document.body.style.backgroundColor = "green";
