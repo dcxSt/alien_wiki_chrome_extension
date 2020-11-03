@@ -150,11 +150,12 @@ function replaceWords(){
     title.innerHTML = alienify(toReplace,titleInner);
 
     // replace fn, table of contents, subtitles, summary(right sidebar)
-    var fn = document.querySelectorAll(".fn,.toctext,.summary,.mw-headline");
-    for (var i of fn){
+    var element = document.querySelectorAll(".fn,.toctext,.summary,.mw-headline");
+    for (var i of element){
         iInner = i.innerHTML;
         i.innerHTML = alienify(toReplace,iInner);
     };
+}
 
 
 replaceWords();
